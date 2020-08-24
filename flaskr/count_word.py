@@ -2,7 +2,6 @@ import requests
 from collections import Counter
 from bs4 import BeautifulSoup
 import nltk
-nltk.download('punkt')
 import re
 from models import Result
 from app import db
