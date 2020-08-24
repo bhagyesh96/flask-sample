@@ -42,7 +42,7 @@ def find_result():
         func=word_count, args=(url,), result_ttl=5000
     )
     resp = {
-      "jonId": job.get_id()
+      "jobId": job.get_id()
     }
     return resp
 
@@ -59,7 +59,7 @@ def results(job_id):
         )
         return jsonify(results)
     else:
-        return 'Something Went Wrong', 300
+        return 'Something Went Wrong', 400
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000)

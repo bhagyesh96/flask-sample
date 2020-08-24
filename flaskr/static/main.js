@@ -9,8 +9,8 @@ function renderData(data){
       })
     }
 
-function getJobData(jonId){
-    $.get("result/"+jonId, function(data, status){
+function getJobData(jobId){
+    $.get("result/"+jobId, function(data, status){
         
         renderData(data)
         
@@ -31,7 +31,7 @@ $( "#analyze" ).click(function() {
         contentType: 'application/json',
         success: function (data) {
             $("#loader").css("display", "none");
-            getJobData(data.jonId)
+            getJobData(data.jobId)
         },
         data: JSON.stringify(url_data)
     });
