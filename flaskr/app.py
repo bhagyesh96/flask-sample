@@ -49,7 +49,6 @@ def find_result():
 @app.route('/result/<job_id>', methods=['GET'])
 def results(job_id):
     job = Job.fetch(job_id, connection=conn)
-    time.sleep(3)
     if job.is_finished:
         result = Result.query.filter_by(id=job.result).first()
         results = sorted(
