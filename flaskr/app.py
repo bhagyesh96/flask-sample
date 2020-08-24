@@ -31,7 +31,7 @@ from models import *
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html', results=results)
+    return render_template('index.html')
 
 
 @app.route('/analyze', methods=['POST'])

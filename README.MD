@@ -11,5 +11,8 @@
         >>> chmod a+rx my-script.sh
                 $ ./my-script.sh
 
+## to use multiple worker start server with#
+gunicorn -w 4 --bind  0.0.0.0:5000 wsgi:app                
+
 
 
