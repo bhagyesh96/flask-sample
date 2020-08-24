@@ -3,3 +3,4 @@ env/
 test.db/
 .env
 .DS_Store
+test.db
