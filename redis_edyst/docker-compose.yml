@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  
+  redisedyst:
+    image: redisedyst
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+      
+  #redis:
+  #    image: redis:alpine
+  #    restart: always
+  #    expose:
+  #      - '6379'
+  #    ports:
+   #     - '6379:6379'    
