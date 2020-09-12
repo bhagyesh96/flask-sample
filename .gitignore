@@ -51,7 +51,7 @@ Thumbs.db
 # Environments 
 .env 
 .venv 
-env/ 
+edyst_env/ 
 venv/ 
 ENV/ 
 env.bak/ 
