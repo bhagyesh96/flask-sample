@@ -14,6 +14,7 @@ import os
 import re
 import time
 from flask_caching import Cache
+from multiprocessing import pool
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,4 +79,5 @@ def get_result_db(job):
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', 5000)
+    p = Pool(5)
+    p(app.run('0.0.0.0', 5000))
