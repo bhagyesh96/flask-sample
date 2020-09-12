@@ -13,12 +13,15 @@ from bs4 import BeautifulSoup
 import os
 import re
 import time
+from flask_caching import Cache
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+BASE_DIR+'/test.db'
 db = SQLAlchemy(app)
+cache = Cache(app, config={'CACHE_TYPE': 'redis'})
 from count_word import *
 
 
@@ -59,7 +62,7 @@ def find_result_test():
 def results(job_id):
     job = Job.fetch(job_id, connection=conn)
     if job.is_finished:
-        result = Result.query.filter_by(id=job.result).first()
+        result = get_result_db(job)
         results = sorted(
             result.count_data.items(),
             key=operator.itemgetter(1),
@@ -69,7 +72,10 @@ def results(job_id):
     else:
         return 'Job Pending', 200
 
-        
+@cache.memoize(timeout=60)
+def get_result_db(job):
+    return Result.query.filter_by(id=job.result).first()
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000)
